@@ -19,3 +19,5 @@ vendor
 _yardoc
 doc/
 /Gemfile.lock
+
+.idea
