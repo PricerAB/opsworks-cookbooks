@@ -127,6 +127,8 @@
   IncludeOptional <%= @params[:local_config] %>-ssl*
   <% end -%>
 
+  ProxyPreserveHost On
+  
 <% if @params[:server_aliases] && !@params[:server_aliases].empty? -%>
   <% if node['opsworks_java']['tomcat']['apache_tomcat_bind_mod'] == 'proxy_ajp' -%>
   ProxyPass <%= node['opsworks_java']['tomcat']['apache_tomcat_bind_path'] %> ajp://localhost:<%= node['opsworks_java']['tomcat']['ajp_port'] %>/<%= @params[:target_context] %>
