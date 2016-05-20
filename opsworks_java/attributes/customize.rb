@@ -9,3 +9,13 @@
 # The following shows how to override the Tomcat threadpool max size:
 #
 #normal['opsworks_java']['tomcat']['threadpool_max_threads'] = 150
+# Use Java 8
+normal['opsworks_java']['jvm_version'] = '8'
+
+# Its not enough to just specify the version above, need to change the pkg name
+case node[:platform_family]
+when 'debian'
+      normal['opsworks_java']['jvm_pkg']['name'] = "openjdk-#{node['opsworks_java']['jvm_version']}-jdk"
+when 'rhel'
+      normal['opsworks_java']['jvm_pkg']['name'] = "java-1.#{node['opsworks_java']['jvm_version']}.0-openjdk-devel"
+end
