@@ -54,7 +54,7 @@ end
 package 'metricbeat' do # ~FC009
   version version_string
   options node['platform_family'] == 'rhel' ? '' : '-o Dpkg::Options::="--force-confdef" -o Dpkg::Options::="--force-confold"'
-  flush_cache(:before => true) if node['platform_family'] == 'rhel'
+  #flush_cache(:before => true) if node['platform_family'] == 'rhel'
   allow_downgrade true if node['platform_family'] == 'rhel'
   notifies :restart, 'service[metricbeat]' if node['metricbeat']['notify_restart'] && !node['metricbeat']['disable_service']
 end
