@@ -11,9 +11,8 @@ issues_url 'https://github.com/vkhatri/chef-metricbeat/issues' if respond_to?(:i
 
 depends 'yum'
 depends 'apt'
-depends 'windows'
 depends 'yum-plugin-versionlock'
 
-%w(ubuntu centos amazon redhat fedora windows).each do |os|
+%w(ubuntu centos amazon redhat fedora).each do |os|
   supports os
 end

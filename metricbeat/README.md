@@ -28,7 +28,7 @@ https://github.com/vkhatri/chef-metricbeat
 
 ## Supported OS
 
-This cookbook was tested on Amazon & Ubuntu Linux and expected to work on other RHEL platforms and Windows.
+This cookbook was tested on Amazon & Ubuntu Linux and expected to work on other RHEL platforms.
 
 
 ## Recipes
@@ -38,8 +38,6 @@ This cookbook was tested on Amazon & Ubuntu Linux and expected to work on other 
 - `metricbeat::install` - install metricbeat for rhel, debian, ubuntu based OS
 
 - `metricbeat::config` - configure metricbeat
-
-- `metricbeat::install_windows` - configure metricbeat for windows based OS
 
 
 ## Core Attributes
@@ -51,9 +49,9 @@ This cookbook was tested on Amazon & Ubuntu Linux and expected to work on other 
 
 * `default['metricbeat']['packages']` (default: `[]`): package dependencies
 
-* `default['metricbeat']['conf_dir']` (default: `/etc/metricbeat` or `C:/opt/metricbeat/metricbeat-1.3.1-windows/`): metricbeat yaml configuration file directory
+* `default['metricbeat']['conf_dir']` (default: `/etc/metricbeat`): metricbeat yaml configuration file directory
 
-* `default['metricbeat']['conf_file']` (default: `/etc/metricbeat/metricbeat.yml` or `C:/opt/metricbeat/metricbeat-1.3.1-windows/metricbeat.yml`): metricbeat configuration file
+* `default['metricbeat']['conf_file']` (default: `/etc/metricbeat/metricbeat.yml`): metricbeat configuration file
 
 * `default['metricbeat']['notify_restart']` (default: `true`): whether to restart metricbeat service on configuration file change
 
