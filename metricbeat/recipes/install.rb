@@ -49,12 +49,6 @@ when 'rhel'
     enabled node['metricbeat']['yum']['enabled']
     action node['metricbeat']['yum']['action']
   end
-
-  yum_version_lock 'metricbeat' do
-    version node['metricbeat']['version']
-    release node['metricbeat']['release']
-    action :update
-  end
 end
 
 package 'metricbeat' do # ~FC009
