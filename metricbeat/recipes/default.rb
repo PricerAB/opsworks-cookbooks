@@ -19,8 +19,6 @@
 
 include_recipe 'metricbeat::attributes'
 
-include_recipe 'yum-plugin-versionlock::default' if (node['platform'] == 'rhel') || (node['platform'] == 'centos')
-
 include_recipe 'metricbeat::install'
 
 include_recipe 'metricbeat::config'
