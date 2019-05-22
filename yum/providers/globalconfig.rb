@@ -1,8 +1,9 @@
 #
-# Author:: Tim Smith (<tsmith@chef.io>)
-# Recipe:: yum::fedora_yum_compat
+# Cookbook Name:: yum
+# Provider:: repository
 #
-# Copyright 2015-2016, Chef Software, Inc (<legal@chef.io>)
+# Author:: Sean OMeara <someara@chef.io>
+# Copyright 2013-2016, Chef Software, Inc.
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -15,9 +16,25 @@
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
 # limitations under the License.
+#
 
-execute 'install yum' do
-  command 'dnf install yum -y'
-  not_if { ::File.exist?('/var/lib/yum') }
-  action :nothing
-end.run_action(:run)
+use_inline_resources
+
+def whyrun_supported?
+  true
+end
+
+action :create do
+  template new_resource.path do
+    source 'main.erb'
+    cookbook 'yum'
+    mode '0644'
+    variables(config: new_resource)
+  end
+end
+
+action :delete do
+  file new_resource.path do
+    action :delete
+  end
+end
