@@ -1,8 +1,8 @@
 #
-# Cookbook:: apt
+# Cookbook Name:: apt
 # Provider:: preference
 #
-# Copyright:: 2010-2016, Chef Software, Inc.
+# Copyright 2010-2016, Chef Software, Inc.
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -49,8 +49,7 @@ action :add do
 
   name = safe_name(new_resource.name)
 
-  file "cleanup_#{new_resource.name}.pref" do
-    path "/etc/apt/preferences.d/#{new_resource.name}.pref"
+  file "/etc/apt/preferences.d/#{new_resource.name}.pref" do
     action :delete
     if ::File.exist?("/etc/apt/preferences.d/#{new_resource.name}.pref")
       Chef::Log.warn "Replacing #{new_resource.name}.pref with #{name}.pref in /etc/apt/preferences.d/"
@@ -58,8 +57,7 @@ action :add do
     only_if { name != new_resource.name }
   end
 
-  file "cleanup_#{new_resource.name}" do
-    path "/etc/apt/preferences.d/#{new_resource.name}"
+  file "/etc/apt/preferences.d/#{new_resource.name}" do
     action :delete
     if ::File.exist?("/etc/apt/preferences.d/#{new_resource.name}")
       Chef::Log.warn "Replacing #{new_resource.name} with #{new_resource.name}.pref in /etc/apt/preferences.d/"
@@ -79,8 +77,7 @@ action :remove do
   name = safe_name(new_resource.name)
   if ::File.exist?("/etc/apt/preferences.d/#{name}.pref")
     Chef::Log.info "Un-pinning #{name} from /etc/apt/preferences.d/"
-    file "remove_#{name}.pref" do
-      path "/etc/apt/preferences.d/#{name}.pref"
+    file "/etc/apt/preferences.d/#{name}.pref" do
       action :delete
     end
   end
